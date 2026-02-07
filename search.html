@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Law Line - Legal Search</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #aacce3;
+    min-height: 100vh;
+    text-align: center;
+    color: #001f3f;
+  }
+
+  header {
+    background: #001f3f;
+    color: white;
+    padding: 25px 10px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .search-box {
+    margin: 50px auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    max-width: 800px;
+    padding: 0 20px;
+  }
+
+  .search-box input {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 2px solid #001f3f;
+    outline: none;
+  }
+
+  .mic-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: none;
+    background: #e6e6e6;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mic-btn:hover {
+    background: #d0d0d0;
+  }
+
+  .results {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    display: none;
+  }
+
+  .law-card {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .buttons button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: #001f3f;
+    color: white;
+  }
+
+  .buttons button:hover {
+    background: #003366;
+  }
+</style>
+</head>
+<body>
+
+<header>Law Line - Legal Search</header>
+
+<div class="search-box">
+  <input id="query" type="text" placeholder="Search your query here..." oninput="debouncedSearch()">
+
+  <!-- Mic ICON (optional, not wired now) -->
+  <button class="mic-btn" title="Voice Search">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z" fill="#000"/>
+      <path d="M19 11a1 1 0 0 0-2 0 5 5 0 0 1-10 0 1 1 0 0 0-2 0 7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11z" fill="#000"/>
+    </svg>
+  </button>
+</div>
+
+<div id="results" class="results"></div>
+
+<div class="buttons">
+  <button onclick="alert('Chat feature coming soon')">Chat with Chatbox</button>
+  <button onclick="alert('Advocate contact coming soon')">Contact an Advocate</button>
+  <button onclick="window.location.href='index.html'">← Back to Home</button>
+</div>
+
+<!-- LOAD YOUR DATABASE -->
+<script src="lawDatabase.js"></script>
+
+<script>
+let timer;
+
+function debouncedSearch() {
+  clearTimeout(timer);
+  timer = setTimeout(searchQuery, 300);
+}
+
+function searchQuery() {
+  const inputRaw = document.getElementById("query").value.trim().toLowerCase();
+  const resultsBox = document.getElementById("results");
+  resultsBox.innerHTML = "";
+
+  if (!inputRaw) {
+    resultsBox.style.display = "none";
+    return;
+  }
+
+  resultsBox.style.display = "block";
+
+  const input = inputRaw.replace(/([a-z]+)(\d+)/gi, "$1 $2");
+
+  const articleMatch = input.match(/\barticle\s+(\d+)\b/);
+  const sectionMatch = input.match(/\bsection\s+(\d+[a-z]?)\b/);
+
+  let matchedLaws = [];
+
+  if (articleMatch) {
+    const articleNumber = articleMatch[1];
+    matchedLaws = window.lawDatabase.filter(law =>
+      new RegExp(`\\barticle\\s+${articleNumber}\\b`, "i").test(law.article)
+    );
+  } else if (sectionMatch) {
+    const sectionNumber = sectionMatch[1];
+    matchedLaws = window.lawDatabase.filter(law =>
+      new RegExp(`\\bsection\\s+${sectionNumber}\\b`, "i").test(law.article)
+    );
+  } else {
+    const words = input.match(/\b\w+\b/g) || [];
+    matchedLaws = window.lawDatabase.filter(law =>
+      law.keywords.some(key => words.includes(key.toLowerCase()))
+    );
+  }
+
+  if (matchedLaws.length === 0) {
+    resultsBox.innerHTML = "<p>❌ No matching legal article or section found.</p>";
+    return;
+  }
+
+  matchedLaws.forEach((law, i) => {
+    resultsBox.innerHTML += `
+      <div class="law-card">
+        <h3>Result ${i + 1}</h3>
+        <p><strong>${law.article}</strong></p>
+        <p><strong>Punishment:</strong> ${law.punishment}</p>
+        <p><strong>Compensation:</strong> ${law.sueAmount}</p>
+        <p><strong>Explanation:</strong> ${law.explanation}</p>
+        <p><strong>How to Proceed:</strong> ${law.howToProceed}</p>
+      </div>
+    `;
+  });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Legal Articles - Law Line</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #aacce3;
+      color: #001f3f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 50px;
+    }
+
+    header {
+      width: 100%;
+      background-color: #001f3f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    table {
+      width: 95%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      table-layout: fixed;
+    }
+
+    th, td {
+      padding: 15px;
+      vertical-align: top;
+      word-wrap: break-word;
+      border: 1px solid #001f3f;
+    }
+
+    th {
+      background-color: #001f3f;
+      color: white;
+      text-align: left;
+    }
+
+    th:first-child,
+    td:first-child {
+      width: 30%;
+    }
+
+    th:last-child,
+    td:last-child {
+      width: 70%;
+    }
+
+    .back-button {
+      margin-top: 30px;
+      padding: 12px 28px;
+      font-size: 16px;
+      background-color: #001f3f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+      transition: 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #003366;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>All Legal Articles - Law Line</h1>
+  </header>
+
+  <button class="back-button" onclick="location.href='index.html'">
+    ← Back to Home
+  </button>
+
+  <table id="articlesTable">
+    <thead>
+      <tr>
+        <th>Section / Article</th>
+        <th>Explanation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dynamic rows -->
+    </tbody>
+  </table>
+
+  <script src="lawDatabase.js"></script>
+  <script>
+    const tableBody = document.querySelector('#articlesTable tbody');
+
+    window.lawDatabase.forEach(law => {
+      const row = document.createElement('tr');
+
+      // Section / Article (FULL TEXT)
+      const articleCell = document.createElement('td');
+      articleCell.textContent = law.article;
+      row.appendChild(articleCell);
+
+      // Explanation (FULL TEXT)
+      const explanationCell = document.createElement('td');
+      explanationCell.textContent = law.explanation;
+      row.appendChild(explanationCell);
+
+      tableBody.appendChild(row);
+    });
+  </script>
+</body>
+</html>

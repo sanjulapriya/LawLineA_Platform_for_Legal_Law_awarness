@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Signup</title>
+  <style>
+    body {
+      background-color: #aacce3;
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background: #001f3f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #message {
+      margin-top: 10px;
+      color: red;
+    }
+    .toggle-link {
+      margin-top: 15px;
+      color: #001f3f;
+      cursor: pointer;
+    }
+    #continueBtn {
+      display: none;
+      background-color: #001f3f;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="form-container">
+  <h2 id="form-title">Signup</h2>
+  <input type="text" id="username" placeholder="Enter username" />
+  <input type="password" id="password" placeholder="Enter password" />
+  <button onclick="submitForm()">Signup</button>
+
+  <div id="message"></div>
+
+  <div class="toggle-link" onclick="toggleForm()">
+    Already have an account? Login
+  </div>
+
+  <!-- Continue Button (only shown after successful login) -->
+  <button id="continueBtn" onclick="goToIndex()">Continue</button>
+</div>
+
+<script src="login.js"></script>
+
+</body>
+</html>

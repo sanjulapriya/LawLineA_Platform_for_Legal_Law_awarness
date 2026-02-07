@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Law Line - A Platform for Legal Law Awareness</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #aacce3;
+      color: #001f3f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #001f3f;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .header h1 {
+      font-size: 1.8em;
+      text-align: center;
+    }
+
+    .read-articles-btn {
+      margin-top: 15px;
+      padding: 12px 28px;
+      font-size: 16px;
+      background-color: #001f3f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+      transition: 0.3s ease;
+    }
+
+    .read-articles-btn:hover {
+      background-color: #003366;
+      transform: scale(1.05);
+    }
+
+    .content {
+      max-width: 1200px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: white;
+      margin: 40px auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      padding: 30px;
+    }
+
+    .left-panel {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .left-panel img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 12px;
+    }
+
+    .right-panel {
+      flex: 2;
+      min-width: 300px;
+      padding: 20px;
+    }
+
+    .right-panel h2 {
+      border-bottom: 2px solid #001f3f;
+      padding-bottom: 5px;
+      margin-top: 20px;
+    }
+
+    .right-panel p {
+      line-height: 1.6;
+    }
+
+    .buttons {
+      margin: 40px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .buttons button {
+      background-color: #001f3f;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .buttons button:hover {
+      background-color: #003366;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .right-panel, .left-panel {
+        max-width: 90%;
+      }
+    }
+
+    .contact-circle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: white;
+      color: #001f3f;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 22px;
+      text-align: center;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+  .contact-circle:hover::after {
+    content: "empowermindssss@gmail.com";
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: white;
+    color: #001f3f;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+}
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Law Line - A Platform for Legal Law Awareness</h1>
+  </div>
+
+  <div class="content">
+    <div class="left-panel">
+      <img src="logo.jpeg" alt="Law Line Logo">
+      <button class="read-articles-btn" onclick="location.href='article.html'">Read All Articles</button>
+    </div>
+
+    <div class="right-panel">
+      <h2>Introduction</h2>
+      <p>Welcome to Law Line – A Platform for Legal Law Awareness, an initiative designed to educate and empower every citizen with basic legal knowledge. In today’s world, many people face injustice simply because they are unaware of their rights and the laws that protect them. Our website aims to bridge this gap by providing simplified, easy-to-understand legal information in one place. Whether it’s about civil rights, cyber safety, women and child protection laws, or consumer rights, Law Line helps you stay informed and confident. We believe that legal awareness is the first step toward justice—and this platform is your guide.</p>
+
+      <h2>Purpose of this Site</h2>
+      <p>The purpose of this website is to educate the public about their legal rights and duties by providing simplified and accessible legal information. It aims to raise awareness on important laws, help users understand how to respond to legal issues, and promote a legally informed and empowered society.</p>
+
+      <h2>Our Vision</h2>
+      <p>To build a society where every individual is legally aware, informed, and empowered to protect their rights and seek justice. Our vision is to make legal knowledge accessible, understandable, and available to all, regardless of age, background, or education.</p>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button onclick="location.href='search.html'">Continue to Search</button>
+    <button onclick="location.href='advocate.html'" target="_blank">Contact a Advocate</button>
+    <button onclick="location.href='chat.html'">Chat with chatbox</button>
+  </div>
+
+  <!-- Circle Contact Us Button -->
+  <button class="contact-circle" onclick="location.href='mailto:empowermindssss@gmail.com'">C</button>
+
+</body>
+</html>
